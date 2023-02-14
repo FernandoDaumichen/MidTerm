@@ -1,0 +1,23 @@
+import { IImportable } from './IImportable'
+import { Playlist } from './Playlist'
+import { PlaylistImporter } from './PlaylistImporter';
+
+
+export class CloudImporter implements IImportable {
+    
+    database: { name: string; song: string; }[]= [
+        { name: "Matue", song: "Quer Voar" },
+        { name: "Matue", song: "cogulandia" },
+        { name: "Matue", song: "30praum" },
+    ]
+
+    loadPlaylist(filepath: string): Playlist {
+        const playlist = new Playlist('My Playlist');
+        if(filepath === 'Music.JSON') {
+            const playlistImporter = new PlaylistImporter(playlist);
+            playlistImporter.importPlaylist(playlist);
+        }return playlist;
+    }
+
+
+}
